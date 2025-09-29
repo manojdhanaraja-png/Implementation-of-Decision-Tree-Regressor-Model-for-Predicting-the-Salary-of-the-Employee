@@ -8,82 +8,100 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1.Import pandas
+1. Import the standard libraries.
 
-2.Import Decision tree classifier
+2.Upload the dataset and check for any null values using .isnull() function.
 
-3.Fit the data in the model
+3.Import LabelEncoder and encode the dataset.
 
-4.Find the accuracy score
+4.Import DecisionTreeRegressor from sklearn and apply the model on the dataset.
 
+
+5.Predict the values of arrays.
+
+6.Import metrics from sklearn and calculate the MSE and R2 of the model on the dataset.
+
+7.Predict the values of array.
+
+8.Apply to new unknown values.
+  
 
 ## Program:
 ```
-/*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
-Developed by: 24900985  
-RegisterNumber: KABELAN G K 
-*/
+Developed by:Manoj . R
+RegisterNumber:25017931
 ```
-
-```
+```python 
 import pandas as pd
-data=pd.read_csv("Salary.csv")
+
+import matplotlib.pyplot as plt
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+data = pd.read_csv("Salary_EX7.csv")
+
 data.head()
+
 data.info()
+
 data.isnull().sum()
-```
-```
+
 from sklearn.preprocessing import LabelEncoder
-le=LabelEncoder()
-data["Position"]=le.fit_transform(data["Position"])
+
+le = LabelEncoder()
+
+data["Position"] = le.fit_transform(data["Position"])
+
 data.head()
-```
-```
+
 x=data[["Position","Level"]]
-x.head()
+
 y=data["Salary"]
-y.head()
 
-```
-```
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=2)
-```
-```
-from sklearn.tree import DecisionTreeRegressor
+
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2,random_state=2)
+
+from sklearn.tree import DecisionTreeRegressor,plot_tree
+
 dt=DecisionTreeRegressor()
+
 dt.fit(x_train,y_train)
+
 y_pred=dt.predict(x_test)
-y_pred
-from sklearn.metrics import r2_score
-r2=r2_score(y_test,y_pred)
-```
-```
-R2 score:  0.48611111111111116
 
+from sklearn import metrics
 
-```
-```
+mse = metrics.mean_squared_error(y_test,y_pred)
+
+mse
+
+r2=metrics.r2_score(y_test,y_pred)
+
+r2
+
 dt.predict([[5,6]])
-```
 
+plt.figure(figsize=(20, 8))
+
+plot_tree(dt, feature_names=x.columns, filled=True)
+
+plt.show()
+
+```
 
 ## Output:
+![image](https://github.com/harini1006/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/113497405/964c85c1-4627-45c1-b905-0f77c3c3b12d)
 
-![image](https://github.com/user-attachments/assets/a61bc2cc-84ea-456b-b431-6814e70f21e9)
-
-![image](https://github.com/user-attachments/assets/b85ac197-8498-48ee-b61a-e1bfb45397ee)
-
-![image](https://github.com/user-attachments/assets/eb0865da-4ded-400b-a133-5bd3868eb59c)
-
-![image](https://github.com/user-attachments/assets/f2538dc7-b3d6-4927-9403-1ba953b50548)
-
-![image](https://github.com/user-attachments/assets/6b53be8b-b5c2-4b09-a220-1ec50aea4747)
+![image](https://github.com/harini1006/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/113497405/b9d39342-e915-4ebd-906d-c7910f9bb566)
 
 
+![image](https://github.com/harini1006/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/113497405/ddede0b2-c6d0-4630-bd54-16dac56a3b01)
 
-
+![image](https://github.com/harini1006/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/113497405/5cb9db1a-7819-42c7-be62-d137d6209c8c)
+![image](https://github.com/harini1006/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/113497405/acbff202-598d-4d01-a02f-7a7fb45741a0)
 
 ## Result:
 Thus the program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee is written and verified using python programming.
+
